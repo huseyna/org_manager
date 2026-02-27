@@ -67,8 +67,8 @@ Interactive docs at **`/docs/`** (Swagger UI) — auto-generated via drf-spectac
 
 - **Unique names per parent** — enforced at both the serializer and DB level (`UniqueConstraint`). Root-level names are also globally unique.
 - **Whitespace trimming** — `trim_whitespace=True` on all `CharField`s; lengths validated 1–200.
-- **Self-parent guard** — a department cannot be set as its own parent (`400`).
-- **Cycle detection** — on every `PATCH`, the ancestor chain of the proposed parent is walked upward; if the current instance is found, the move is rejected (`409 Conflict`).
+- **Self-parent guard** — a department cannot be set as its own parent.
+- **Cycle detection** — on every `PATCH`, the ancestor chain of the proposed parent is walked upward; if the current instance is found, the move is rejected.
 - **Recursive depth** — children are serialized up to `depth=5` via a `current_lvl` counter threaded through serializer context.
 - **Field-targeted errors** — validation uses `validate()` instead of `validate_<field>()` to return errors under specific keys (e.g. `{"name": "..."}`) rather than `non_field_errors`.
 
